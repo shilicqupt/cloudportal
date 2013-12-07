@@ -1,0 +1,19 @@
+- name: copy protobuf tar.gz
+  action: copy src=../repositories/libs/$item dest=${client_download_path}/$item
+  with_items:
+        - ${protobuf_ver}.tar.gz
+
+- name: decompress protobuf tar.gz
+  action: command tar -zxvpf ${client_download_path}/${protobuf_ver}.tar.gz -C ${client_temp_path}
+
+- name: run protobuf install script
+  action: script  ../scripts/protobuf.sh ${client_temp_path}/${protobuf_ver}
+
+
+- name: clear protobuf tmp directory
+  action: shell rm -rf ${client_temp_path}/${protobuf_ver}
+
+- name: clear protobuf tar
+  action: file dest=${client_download_path}/$item state=absent
+  with_items:
+        - ${protobuf_ver}.tar.gz

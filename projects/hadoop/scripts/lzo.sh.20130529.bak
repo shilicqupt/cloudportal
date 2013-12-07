@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+LOG_DIR="/tmp"
+touch $LOG_DIR/install_log
+
+/sbin/ldconfig -p |grep lzo && /sbin/ldconfig -v |grep lzo
+
+if [ $? = 0 ];then
+        echo " [`date`] INFO :  lzo  is already installed"  2>&1 | tee  -ai $LOG_DIR/install_log
+	exit 0
+fi
+
+
+if [ -z "$1" ]; then
+   echo " [`date`] ERROR : required <lzo-ver-dir> "  2>&1  | tee  -ai $LOG_DIR/install_log
+   exit 1
+fi
+
+
+LZO_DIR=$1
+
+##############install lzo####################
+
+#cd $LZO_DIR
+
+#if [ ! -d $LZO_DIR ]; then	
+#   echo " [`date`] ERROR : DIR ' $LZO_DIR' not exits "  2>&1  | tee  -ai $LOG_DIR/install_log
+#fi
+
+#echo ' [`date`] INFO : cd $LZO_DIR  Install "lzo".'   2>&1 | tee -ai $LOG_DIR/install_log
+
+./configure --enable-shared --disable-asm --prefix=/usr/local
+make
+make install
+
+touch /etc/ld.so.conf.d/usr_local_lib.conf
+
+grep "/usr/local/lib" /etc/ld.so.conf.d/usr_local_lib.conf
+if [ $? != 0 ];then
+	echo "/usr/local/lib" >> /etc/ld.so.conf.d/usr_local_lib.conf
+fi
+
+/sbin/ldconfig
+/sbin/ldconfig -p |grep lzo && /sbin/ldconfig -v |grep lzo
+
+if [ $? = 0 ];then
+        echo " [`date`] INFO : lzo install succeed" | tee  -ai $LOG_DIR/install_log
+else
+        echo " [`date`] ERROR : lzo intall failed"  | tee  -ai $LOG_DIR/install_log
+fi

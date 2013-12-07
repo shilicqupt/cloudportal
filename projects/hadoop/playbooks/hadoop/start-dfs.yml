@@ -1,0 +1,3 @@
+- name: stop-dfs.sh
+  action: command /bin/sh ${hadoop_user_home_path}/${hadoop_ver}/bin/start-dfs.sh
+  only_if: '$is_namenode'

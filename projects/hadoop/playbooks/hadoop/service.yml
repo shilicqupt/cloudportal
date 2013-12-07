@@ -1,0 +1,23 @@
+- name: scp hadoop-datanode script
+  action: copy src=../scripts/service/hadoop-datanode dest=/etc/init.d/hadoop-datanode owner=root group=root mode=0755
+  only_if: '$is_slave'
+
+- name: chkconfig -add  hadoop-datanode
+  action: command /sbin/chkconfig --add hadoop-datanode
+  only_if: '$is_slave'
+
+- name: chkconfig on
+  action: command /sbin/chkconfig hadoop-datanode on
+  only_if: '$is_slave'
+
+- name: scp hadoop-tasktracker script
+  action: copy src=../scripts/service/hadoop-tasktracker dest=/etc/init.d/hadoop-tasktracker owner=root group=root mode=0755
+  only_if: '$is_slave'
+
+- name: chkconfig -add  hadoop-tasktracker
+  action: command /sbin/chkconfig --add hadoop-tasktracker
+  only_if: '$is_slave'
+
+- name: chkconfig on
+  action: command /sbin/chkconfig hadoop-tasktracker on
+  only_if: '$is_slave'

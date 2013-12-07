@@ -1,0 +1,12 @@
+[storm]
+YFW-0525
+YFW-0526
+YFW-0527
+
+[zookeeper]
+YFW-0525
+YFW-0526
+YFW-0527
+
+[storm:vars]
+nimbus = YFW-0525

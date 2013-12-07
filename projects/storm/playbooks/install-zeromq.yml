@@ -1,0 +1,10 @@
+- name: copy zeromq tar.gz
+  action: copy src=${ansible_repertory_path}/$item dest=${client_download_path}/$item owner=${storm_user} group=${storm_user_group}
+  with_items:
+        - ${zeromq_ver}.tar.gz
+
+- name: decompress zeromq tar.gz
+  action: command tar -zxvpf ${client_download_path}/${zeromq_ver}.tar.gz -C ${client_temp_path}
+
+- name: make & install zeromq
+  action : script ../scripts/zeromq.sh ${client_temp_path}/${zeromq_ver}

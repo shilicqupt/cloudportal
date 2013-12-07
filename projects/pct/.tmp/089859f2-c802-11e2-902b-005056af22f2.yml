@@ -1,0 +1,6 @@
+- hosts  : hadoop 
+  sudo   : yes
+  user   : borqs 
+  tasks  : 
+      - name: execute script 
+        action: script /application/cloudportal/projects/pct/.tmp/089835d0-c802-11e2-902b-005056af22f2.sh  

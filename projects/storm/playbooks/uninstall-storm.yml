@@ -1,0 +1,8 @@
+- name: rm storm data
+  command : rm -rf /data0/search/storm/
+
+- name: rm storm install 
+  command : rm -rf /application/search/storm-0.8.1/
+
+- name: rm hsperfdata
+  action: shell rm -rf /tmp/hsperfdata_*

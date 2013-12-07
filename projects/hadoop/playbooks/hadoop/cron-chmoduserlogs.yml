@@ -1,0 +1,5 @@
+- name: scp chmoduserlogs.sh script
+  action: copy src=../scripts/crontab/chmoduserlogs.sh dest=${client_crontab_path}/chmoduserlogs.sh owner=root group=root mode=0755
+
+- name: cron chmoduserlogs.sh
+  cron: name="chmoduserlogs" minute="*/1" job="/bin/sh ${client_crontab_path}/chmoduserlogs.sh" user=root state=present

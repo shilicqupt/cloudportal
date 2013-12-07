@@ -1,0 +1,6 @@
+- hosts  : zookeeper 
+  sudo   : no
+  user   : shili 
+  tasks  : 
+      - name: execute script 
+        action: script /home/shili/cloudportal/projects/test/.tmp/03bd4ab6-5cc0-11e3-b5ff-00163e021763.sh  

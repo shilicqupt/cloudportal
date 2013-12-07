@@ -1,0 +1,210 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="page-header">
+            <h3>
+                <i class="icon-desktop icon-2x pull-left icon-muted"></i>
+                <a href="{% url 'view_project' project.name %}">{{ project.name }}</a>
+                <span class="divider">/</span>
+                <span>Execute <small>Job</small></span>
+            </h3>
+        </div>
+        <form id="frmPlaybook" class="form-horizontal" action="" method="post">
+            {% csrf_token %}
+
+
+            <div class="row">
+            <div class="span3">
+                <div class="box well">
+                    <header>
+                        <h5>Playbooks</h5>
+                    </header>
+                    <div class="body">
+                        <ul>
+                            {% for item in project.available_playbooks %}
+
+                                 <li class="playbook">{{ item }}</li>
+
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="span8">
+
+                <div class="box well">
+
+                    <div class="control-group">
+                        <label class="control-label" >Template Name</label>
+                        <div class="controls">
+                            <input name="name" type="text" required="required" class="span3" value={{ jobtemplate.name }}>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Select Inventory</label>
+                        <div class="controls">
+                            <select name="inventory" class="span3">
+                                {% if jobtemplate.inventory %}
+                                    <option>{{ jobtemplate.inventory }}</option>
+                                    <option><--None--></option>
+                                    {% for item in project.available_inventories %}
+                                        {% if item != jobtemplate.inventory %}
+                                            <option value="{{ item }}">{{ item }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <option><--None--></option>
+                                    {% for item in project.available_inventories %}
+                                        <option value="{{ item }}">{{ item }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Select Vars_File</label>
+                        <div class="controls">
+                            <select name="varfiles" class="span3">
+                                {% if jobtemplate.vars_files %}
+                                    <option>{{ jobtemplate.vars_files }}</option>
+                                    <option><--None--></option>
+                                    {% for item in project.available_varfiles %}
+                                        {% if item != jobtemplate.vars_files %}
+                                            <option value="{{ item }}">{{ item }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <option><--None--></option>
+                                    {% for item in project.available_varfiles %}
+                                        <option value="{{ item }}">{{ item }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >Hosts</label>
+                        <div class="controls">
+                            <input name="hosts" type="text" required="required" class="span3" value={{ jobtemplate.hosts }} >
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >User</label>
+                        <div class="controls">
+                            <input name="user" type="text" required="required" class="span3" value={{ jobtemplate.user }}> 
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >Use sudo</label>
+                        <div class="controls">
+                            <input name="use_sudo" type="checkbox" value={{ jobtemplate.use_sudo }}/>
+                        </div>
+
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Forks</label>
+                        <div class="controls">
+                            <input name="forks" type="text"  class="span1" value="{{ jobtemplate.forks }}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Limit</label>
+                        <div class="controls">
+                            <input name="limit" type="text"  class="span3" value="{{ jobtemplate.limit }}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >Check Model</label>
+                        <div class="controls">
+                            <input name="job_type" type="checkbox" />
+                        </div>
+
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputPlaybook">Vars</label>
+                        <div class="controls">
+                            <textarea name="vars"  required="required" class="span3" value={{ jobtemplate.vars }}> </textarea>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputPlaybook">Extra Vars</label>
+                        <div class="controls">
+                            <textarea name="extra_vars"  required="required" class="span3" value={{ jobtemplate.extra_vars}}> </textarea>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >Tasks</label>
+                        <div class="controls">
+                            <textarea name="tasks" id="tasks" required="required" class="span6" rows="10">{{ jobtemplate.playbook }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" id="save" name="save" class="btn btn-primary">Save</button>
+                            <button type="submit" id="submit" name="submit" class="btn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+
+
+
+    </div>
+    <style type="text/css">
+        .over {
+            background-color: #f5f5f5;
+        }
+
+        .out {
+            background-color: #ffffff;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var playbook;
+            $(".playbook").draggable({
+                cursor: 'move',
+                revert: true,
+                start:function(){
+                    playbook = $(this).html()
+                },
+                stop:function(){
+                    playbook = ""
+                }
+            });
+            $("#tasks").droppable({
+                over: function() {
+                    $(this).removeClass('out').addClass('over');
+                },
+                out: function() {
+                    $(this).removeClass('over').addClass('out');
+                },
+                drop: function() {
+                    if(playbook != ""){
+                       var tasks = $(this).val()
+                       tasks  =tasks + playbook + "\n"
+                       $(this).val(tasks)
+                    }
+                    $(this).removeClass('over').addClass('out');
+                }
+            })
+            $("#submit").click(function(){
+                $("#frmPlaybook").attr("action", "{% url 'execute_playbook' project.name %}");
+                $("#frmPlaybook").submit();
+            })
+            $("#save").click(function(){
+                $("#frmPlaybook").attr("action", "");
+                $("#frmPlaybook").submit();
+            })
+         })
+
+        
+    </script>
+{% endblock %}

@@ -1,0 +1,2 @@
+- name: run zookeeper clear script
+  action: script ../scripts/zookeeper_clear.sh ${client_temp_path}

@@ -1,0 +1,12 @@
+#hbase user
+hbase_user : search
+hbase_group : search
+hbase_user_home_path  :  /application/search
+
+#client host
+client_download_path : /application/search/download
+client_temp_path : /application/search/tmp
+
+#software version
+hbase_ver : hbase-0.94.3
+zookeeper_ver: zookeeper

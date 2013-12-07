@@ -1,0 +1,2 @@
+- name: install rsync
+  action: script ../scripts/deploy_rsync.sh test /root/test/data zhukejun no 10.10.0.0/16 search

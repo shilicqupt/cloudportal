@@ -1,0 +1,4 @@
+- hosts  : hadoop 
+  user   : zjing540 
+  tasks  : 
+     - include : /application/cloudportal/projects/pct/playbooks/selinux.yml

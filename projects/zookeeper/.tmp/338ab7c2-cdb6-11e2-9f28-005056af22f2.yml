@@ -1,0 +1,7 @@
+- hosts  : zookeeper 
+  sudo   : yes
+  user   : root 
+  vars_files:
+    - /application/cloudportal/projects/zookeeper/vars/var.yml
+  tasks  : 
+     - include : /application/cloudportal/projects/zookeeper/playbooks/sync-conf.yml

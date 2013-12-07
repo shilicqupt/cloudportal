@@ -1,0 +1,6 @@
+- name: chown & chmod tmp
+  action: file dest=${client_temp_path} owner=${hadoop_user} group=${hadoop_user_group} mode=0755 state=directory
+
+- name: chown & chmod download
+  action: file dest=${client_download_path} owner=${hadoop_user} group=${hadoop_user_group} mode=0755 state=directory
+

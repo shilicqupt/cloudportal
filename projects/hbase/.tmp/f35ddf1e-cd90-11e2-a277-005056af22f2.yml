@@ -1,0 +1,7 @@
+- hosts  : pct 
+  sudo   : yes
+  user   : borqs 
+  vars_files:
+    - /application/cloudportal/projects/hbase/vars/vars.yml
+  tasks  : 
+     - include : /application/cloudportal/projects/hbase/playbooks/common/zookeeper-clear.yml

@@ -1,0 +1,5 @@
+- name: scp chmodcore.sh script
+  action: copy src=../scripts/crontab/chmodcore.sh dest=${client_crontab_path}/chmodcore.sh owner=root group=root mode=0755
+
+- name: cron chmodcore.sh
+  cron: name="chmodcore.sh" minute="*/1" job="/bin/sh ${client_crontab_path}/chmodcore.sh" user=root state=present

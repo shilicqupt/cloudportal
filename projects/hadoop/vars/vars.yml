@@ -1,0 +1,33 @@
+#hadoop user
+hadoop_user : search
+hadoop_user_group : search
+hadoop_user_home_path  :  /application/search
+
+#client host
+client_download_path : /application/search/download
+client_temp_path : /application/search/tmp
+client_crontab_path : /home/borqs/crontab
+
+#software version
+hadoop_ver : hadoop-0.20.2-cdh3u4
+lzo_ver : lzo-2.05
+protobuf_ver : protobuf-2.4.1
+
+fs_default_name_port: 29000
+mapred_job_tracker_port: 29001
+mapred_job_tracker_http_port: 29006
+mapred_task_tracker_http_port: 29007
+dfs_secondary_http_address: 29002
+dfs_datanode_address_port: 29003
+dfs_datanode_http_address_port: 29004
+dfs_http_address_port: 29005
+dfs_datanode_ipc_address_port: 29008
+
+is_master: "'$ansible_hostname' == '$namenode' or '$ansible_hostname' == '$secondnamenode' or '$ansible_hostname' == '$jobtracker'"
+is_slave: "'$ansible_hostname' != '$namenode' and '$ansible_hostname' != '$secondnamenode' and '$ansible_hostname' != '$jobtracker'"
+is_namenode: "'$ansible_hostname' == '$namenode'"
+is_secondnamenode: "'$ansible_hostname' == '$secondnamenode'"
+is_jobtracker: "'$ansible_hostname' == '$jobtracker'"
+
+is_tasktracker_32g: "$is_slave and '$ansible_memtotal_mb'== '32099'"
+is_tasktracker_64g: "$is_slave and '$ansible_memtotal_mb'== '64417'"

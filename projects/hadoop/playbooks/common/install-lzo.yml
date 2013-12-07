@@ -1,0 +1,22 @@
+- name: copy lzo-2.05.tar.gz
+  action: copy src=../repositories/libs/$item dest=${client_download_path}/$item
+  with_items:
+    -  ${lzo_ver}.tar.gz
+
+- name: decompress lzo-2.05.tar.gz
+  action: command tar -zxvpf ${client_download_path}/${lzo_ver}.tar.gz -C ${client_temp_path}
+
+- name: run lzo install script
+  action: script ../scripts/lzo.sh ${client_temp_path}/${lzo_ver}
+
+
+- name: clear lzo tmp directory
+  action: shell rm -rf ${client_temp_path}/${lzo_ver}
+
+- name: clear lzo tar
+  action: file dest=${client_download_path}/$item state=absent
+  with_items:
+    -  ${lzo_ver}.tar.gz
+
+- name: copy lzop
+  action: copy src=../repositories/libs/lzop dest=/usr/bin/lzop owner=root group=root mode=0755

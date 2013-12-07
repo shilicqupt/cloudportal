@@ -1,0 +1,7 @@
+[hadoop]
+YFW-0134
+
+[hadoop:vars]
+namenode=YFW-0249
+jobtracker=YFW-0337
+secondnamenode=YFW-0257

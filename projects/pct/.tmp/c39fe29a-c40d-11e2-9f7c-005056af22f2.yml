@@ -1,0 +1,5 @@
+- hosts  : hadoop 
+  user   : root 
+  tasks  : 
+      - name: execute script 
+        action: script /application/cloudportal/projects/pct/.tmp/c39fc2f6-c40d-11e2-9f7c-005056af22f2.sh  

@@ -1,0 +1,17 @@
+- name: copy storm tar.gz
+  action: copy src=${ansible_repertory_path}/$item dest=${client_download_path}/$item owner=${rabbitmq_user} group=${rabbitmq_user_group}
+  with_items:
+    - ${erlang_ver}.tar.gz
+
+- name: decompress storm tar.gz
+  action: command tar -zxvpf ${client_download_path}/${erlang_ver}.tar.gz -C ${client_temp_path}
+
+- name: make & install erlang
+  action : script ../scripts/install-erlang.sh ${client_temp_path}/${erlang_ver}
+
+
+
+- name: clear erlangtar.gz
+  action: file dest=${client_download_path}/$item state=absent
+  with_items:
+    - ${erlang_ver}.tar.gz

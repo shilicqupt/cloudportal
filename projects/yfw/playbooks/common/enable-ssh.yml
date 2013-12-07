@@ -1,0 +1,11 @@
+- name: check hadoop user
+  user: name=${hadoop_user} group=${hadoop_user_group} home=/application/${hadoop_user} createhome=yes state=present 
+- name: scp id_dsa
+  action: copy src=${ansible_repertory_path}/yfw/keys/id_dsa dest=${hadoop_user_home_path}/.ssh owner=${hadoop_user} group=${hadoop_user_group} mode=0700
+  only_if: '$is_master'
+- name: enable key-based ssh access for users
+  authorized_key: user=${hadoop_user} key='$FILE(${ansible_repertory_path}/yfw/keys/id_dsa.pub)'  
+- name: chmod 600 authorized_keys
+  action: shell chmod 600 ${hadoop_user_home_path}/.ssh/authorized_keys
+- name: chmod 700 .ssh
+  action: shell chmod 700 ${hadoop_user_home_path}/.ssh

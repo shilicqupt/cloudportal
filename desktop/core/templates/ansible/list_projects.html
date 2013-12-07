@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h3>
+                <span>Projects</span>
+                <span class="pull-right">
+                     <a href="{% url 'add_project' %}" class="btn btn-small btn-primary"><i class="icon-plus"></i> New Project</a>
+                </span>
+            </h3>
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Project Name</th>
+                <th>Created User</th>
+                <th>Created </th>
+                <th>Operation</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in projects %}
+                <tr id="tr{{ item.pk }}" class="tableRow">
+                    <td><strong><a href="{% url 'view_project' item.name %}">{{ item.name }}</a></strong></td>
+                    <td>{{ item.created_by }}</td>
+                    <td>{{ item.creation_date }}</td>
+                    <td><a href="javascript:void(0)" onclick="delete_project('{% url 'delete_project' item.name %}',{{ item.pk }})"><i class="icon-trash"></i></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <script type="text/javascript">
+    function delete_project(url,pk){
+        if(confirm("are you sure to delete ?")){
+            jQuery.get(url,function(data){
+                if(data=true){
+                    $("#tr"+pk).hide('slow',function(){
+                        $(this).remove()
+                    })
+                }
+            })
+        }
+    }
+    </script>
+
+{% endblock %}

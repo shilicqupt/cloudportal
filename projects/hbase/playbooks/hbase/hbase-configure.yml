@@ -1,0 +1,2 @@
+- name: run hbase configure script
+  action: script ../scripts/hbase_configure.sh ${client_temp_path}

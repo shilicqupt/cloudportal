@@ -1,0 +1,5 @@
+- hosts  : pct 
+  sudo   : yes
+  user   : borqs 
+  tasks  : 
+     - include : /application/cloudportal/projects/hbase/playbooks/hbase-install.yml

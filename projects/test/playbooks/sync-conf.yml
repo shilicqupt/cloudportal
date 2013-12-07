@@ -1,0 +1,6 @@
+- name: sync zookeeper conf
+  action: template src=../templates/conf/$item dest=${zookeeper_user_home_path}/${zookeeper_ver}/conf/$item owner=${zookeeper_user} group=${zookeeper_user_group} mode=0755 
+  with_items:
+     - zoo.cfg
+     - log4j.properties
+     - configuration.xsl

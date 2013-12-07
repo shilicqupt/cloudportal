@@ -1,0 +1,9 @@
+[hadoop]
+YFW-0519
+YFW-0520
+YFW-0521
+
+[hadoop:vars]
+namenode=YFW-0519
+jobtracker=YFW-0519
+secondnamenode=YFW-0519

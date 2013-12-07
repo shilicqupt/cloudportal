@@ -1,0 +1,3 @@
+- name: stop-mapred.sh
+  action: command /bin/sh ${hadoop_user_home_path}/${hadoop_ver}/bin/start-mapred.sh
+  only_if: '$is_jobtracker'

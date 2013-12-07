@@ -1,0 +1,4 @@
+- hosts  : hosts 
+  user   : borqs 
+  tasks  : 
+     - include : /application/cloudportal/projects/pct/playbooks/mkdir-directory.yml

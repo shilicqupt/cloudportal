@@ -1,0 +1,19 @@
+- hosts  : hadoop 
+  sudo   : yes
+  user   : root 
+  vars_files:
+    - /application/cloudportal/projects/yfw/vars/vars.yml
+  tasks  : 
+     - include : /application/cloudportal/projects/yfw/playbooks/common/stop-iptables.yml
+     - include : /application/cloudportal/projects/yfw/playbooks/common/stop-selinux.yml
+     - include : /application/cloudportal/projects/yfw/playbooks/common/ensure-directory.yml
+     - include : /application/cloudportal/projects/yfw/playbooks/common/tune2fs.yml
+     - include : /application/cloudportal/projects/yfw/playbooks/common/enable-ssh.yml
+     - include : /application/cloudportal/projects/yfw/playbooks/hadoop/install.yml
+     - include : /application/cloudportal/projects/yfw/playbooks/hadoop/sync-conf.yml
+     - include : /application/cloudportal/projects/yfw/playbooks/hadoop/service.yml
+     - include : /application/cloudportal/projects/yfw/playbooks/common/install-lzo.yml
+     - include : /application/cloudportal/projects/yfw/playbooks/common/install-protobuf.yml
+     - include : /application/cloudportal/projects/yfw/playbooks/common/clear-directory.yml
+     - include : /application/cloudportal/projects/yfw/playbooks/common/hugepage.yml
+     - include : /application/cloudportal/projects/yfw/playbooks/common/corefile.yml

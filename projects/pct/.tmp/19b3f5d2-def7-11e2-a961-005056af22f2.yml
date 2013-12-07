@@ -1,0 +1,7 @@
+- hosts  : hadoop 
+  sudo   : yes
+  user   : root 
+  tasks  : 
+     - include : /application/cloudportal/projects/pct/playbooks/selinux.yml
+     - include : /application/cloudportal/projects/pct/playbooks/test-output.yml
+     - include : /application/cloudportal/projects/pct/playbooks/tune2fs.yml

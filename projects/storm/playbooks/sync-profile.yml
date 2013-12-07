@@ -1,0 +1,6 @@
+- name: copy profile
+  action: copy src=../templates/etc/profile dest=/etc/profile
+
+- name: source profile
+  action: shell source /etc/profile
+  ignore_errors: yes

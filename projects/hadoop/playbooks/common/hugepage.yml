@@ -1,0 +1,10 @@
+- name: disable hugepage
+  action: shell echo always > /sys/kernel/mm/redhat_transparent_hugepage/enabled
+- name: always defrag
+  action: shell echo never  > /sys/kernel/mm/redhat_transparent_hugepage/defrag
+
+- name: set defrag = never after reboot
+  cron: name="set defrag = never" reboot=true job="/bin/echo \"never\" > /sys/kernel/mm/redhat_transparent_hugepage/defrag"
+
+
+  

@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h3>New Project</h3>
+        </div>
+        <form id="frmProject" class="form-horizontal" action="{{ action }}" method="post">
+            {% csrf_token %}
+            {% if page_errors %}
+                <div class="alert">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>ERROR!</strong>
+                    Invalid username or password
+
+                </div>
+            {% endif %}
+            <div class="control-group">
+                <label class="control-label" for="inputName">Project name </label>
+                <div class="controls">
+                    <input name="name" type="text" required="required" class="span3" id="inputName" placeholder="Example Project">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputDescription">Project description </label>
+                <div class="controls">
+                   <textarea name="description" id="inputDescription" class="span6" rows="3" cols="30" placeholder="This project is used to ..."></textarea>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

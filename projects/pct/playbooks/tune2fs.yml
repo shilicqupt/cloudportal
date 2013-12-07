@@ -1,0 +1,7 @@
+- name: copy tune2fs.sh
+  action: copy src=${ansible_install_path}/scripts/tune2fs.sh dest=/tmp/tune2fs.sh owner=root group=root mode=0755
+- name: run tune2fs.sh
+  action: command /bin/sh /tmp/tune2fs.sh
+- name: clear tune2fs.sh
+  action: file dest=/tmp/tune2fs.sh state=absent
+

@@ -1,0 +1,5 @@
+- hosts  : 10.10.214.43 
+  user   : borqs 
+  tasks  : 
+      - name: execute script 
+        action: script /application/cloudportal/projects/pct/.tmp/987488be-c449-11e2-9d55-005056af22f2.sh  

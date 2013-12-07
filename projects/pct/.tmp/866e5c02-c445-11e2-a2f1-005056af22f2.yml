@@ -1,0 +1,4 @@
+- hosts  :  
+  user   : hadoop  
+  tasks  : 
+     - include : /application/cloudportal/projects/pct/playbooks/mkdir1-directory.yml

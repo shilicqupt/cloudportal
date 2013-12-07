@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<allocations>
+  <pool name="relat">
+    <minMaps>560</minMaps>
+    <minReduces>224</minReduces>
+    <weight>1.0</weight>
+  </pool>
+  <pool name="index">
+    <minMaps>560</minMaps>
+    <minReduces>224</minReduces>
+    <weight>1.0</weight>
+  </pool>
+  <pool name="crawl">
+    <minMaps>279</minMaps>
+    <minReduces>111</minReduces>
+    <weight>1.0</weight>
+  </pool>
+  <pool name="search">
+    <minMaps>560</minMaps>
+    <minReduces>224</minReduces>
+    <weight>1.0</weight>
+  </pool>
+  <pool name="fast">
+    <minMaps>1</minMaps>
+    <minReduces>1</minReduces>
+    <weight>10.0</weight>
+  </pool>
+  <pool name="classify">
+    <minMaps>400</minMaps>
+    <minReduces>160</minReduces>
+    <weight>1.0</weight>
+  </pool>
+  <pool name="default">
+    <maxRunningJobs>0</maxRunningJobs>
+  </pool>
+
+  <poolMaxJobsDefault>100</poolMaxJobsDefault>
+  <defaultMinSharePreemptionTimeout>60</defaultMinSharePreemptionTimeout>
+  <fairSharePreemptionTimeout>600</fairSharePreemptionTimeout>
+</allocations>

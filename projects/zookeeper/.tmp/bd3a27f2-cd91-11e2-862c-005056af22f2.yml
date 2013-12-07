@@ -1,0 +1,5 @@
+- hosts  : zookeeper 
+  sudo   : yes
+  user   : search 
+  tasks  : 
+     - include : /application/cloudportal/projects/zookeeper/playbooks/stop-zk.yml

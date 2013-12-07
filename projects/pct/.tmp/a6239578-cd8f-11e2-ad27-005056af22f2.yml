@@ -1,0 +1,6 @@
+- hosts  : zookeeper 
+  sudo   : yes
+  user   : search 
+  tasks  : 
+      - name: execute script 
+        action: script /application/cloudportal/projects/pct/.tmp/a6236238-cd8f-11e2-ad27-005056af22f2.sh  

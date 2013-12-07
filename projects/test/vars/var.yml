@@ -1,0 +1,16 @@
+#zookeeper user
+zookeeper_user : search
+zookeeper_user_group : search
+zookeeper_user_home_path  :  /application/search
+zookeeper_dataDir : /data0/search/zookeeper/data
+zookeeper_dataLogDir : /data0/search/zookeeper/datalog
+
+#client host
+client_download_path : /application/search/download
+client_temp_path : /application/search/tmp
+
+#software version
+zookeeper_ver : zookeeper-3.4.5
+
+#ansible config
+ansible_repertory_path : /application/cloudportal-repositories

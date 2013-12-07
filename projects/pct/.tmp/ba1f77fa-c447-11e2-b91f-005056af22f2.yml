@@ -1,0 +1,5 @@
+- hosts  : all 
+  user   : p_zhangjing 
+  tasks  : 
+      - name: execute script 
+        action: script /application/cloudportal/projects/pct/.tmp/ba1f5504-c447-11e2-b91f-005056af22f2.sh  

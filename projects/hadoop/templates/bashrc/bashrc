@@ -1,0 +1,39 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+            . /etc/bashrc
+        fi
+
+# User specific aliases and functions
+alias hadoop="/application/search/hadoop-0.20.2-cdh3u4/bin/hadoop"
+#######################################################################
+HADOOP_CONF_DIR=$HADOOP_HOME/conf
+CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:${HADOOP_CONF_DIR}
+
+IFS=
+
+# add libs to CLASSPATH
+for f in $HADOOP_HOME/lib/*.jar 
+do
+        CLASSPATH=${CLASSPATH}:$f;
+done
+
+for ff in $HADOOP_HOME/*.jar; 
+do
+        CLASSPATH=${CLASSPATH}:$ff
+done
+for f in $HADOOP_HOME/lib/jsp-2.0/*.jar; 
+do
+        CLASSPATH=${CLASSPATH}:$f;
+done
+
+if [ -d "$HADOOP_HOME/build/ivy/lib/Hadoop/common" ]; then
+for f in $HADOOP_HOME/build/ivy/lib/Hadoop/common/*.jar; 
+do
+        CLASSPATH=${CLASSPATH}:$f;
+done
+fi
+
+unset IFS
+export CLASSPATH

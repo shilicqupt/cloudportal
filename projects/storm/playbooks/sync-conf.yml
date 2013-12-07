@@ -1,0 +1,4 @@
+- name: sync storm conf
+  action: template src=../templates/conf/$item dest=${storm_user_home_path}/${storm_ver}/conf/$item owner=${storm_user} group=${storm_user_group}
+  with_items:
+    - storm.yaml

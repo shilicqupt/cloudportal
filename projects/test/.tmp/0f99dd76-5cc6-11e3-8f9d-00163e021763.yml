@@ -1,0 +1,5 @@
+- hosts  : zookeeper 
+  user   : shili 
+  tasks  : 
+      - name: execute script 
+        action: copy src=/home/shili/cloudportal/desktop/core/tmp dest=/home/shili owner=shili group=shili mode=644

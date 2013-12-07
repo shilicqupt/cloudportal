@@ -1,0 +1,2 @@
+- name: make & install erlang
+  action : script ../scripts/install-erlang.sh ${client_temp_path}/${erlang_ver}

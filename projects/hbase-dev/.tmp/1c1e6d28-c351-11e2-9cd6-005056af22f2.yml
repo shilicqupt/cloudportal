@@ -1,0 +1,4 @@
+- hosts  : hadoop 
+  user   : root 
+  tasks  : 
+     - include : /application/cloudportal/projects/hbase-dev/playbooks/sync-profile.yml

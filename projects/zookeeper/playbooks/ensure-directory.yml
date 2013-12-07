@@ -1,0 +1,15 @@
+- name: ensure /tmp exists
+  file: path=/tmp mode=0777 owner=root group=root  state=directory
+
+- name: ensure /application/search/tmp directory exists
+  action: file dest=${client_temp_path} owner=root group=root mode=0755 state=directory
+
+- name: ensure /application/search/download directory exists
+  action: file dest=${client_download_path} owner=root group=root mode=0755 state=directory
+
+- name: ensure zookeeper dataDir directory exists
+  action: file dest=${zookeeper_dataDir} owner=${zookeeper_user} group=${zookeeper_user_group} mode=0755 state=directory
+
+
+- name: ensure ookeeper dataLogDir directory exists
+  action: file dest=${zookeeper_dataLogDir} owner=${zookeeper_user} group=${zookeeper_user_group} mode=0755 state=directory

@@ -1,0 +1,5 @@
+- name: scp hbase-0.94.3.jar for hadoop
+  action: copy src=../repositories/hbase-0.94.3.jar dest=/application/search/hadoop-0.20.2-cdh3u4/lib/hbase-0.94.3.jar  owner=search group=search mode=0664
+
+- name: scp hbase-0.94.3.jar for hbase
+  action: copy src=../repositories/hbase-0.94.3.jar dest=/application/search/hbase-0.94.3/hbase-0.94.3.jar  owner=search group=search mode=0664

@@ -1,0 +1,5 @@
+- hosts  : hadoop 
+  sudo   : yes
+  user   : shili 
+  tasks  : 
+     - include : /application/cloudportal/projects/pct/playbooks/stop_iptables.yml

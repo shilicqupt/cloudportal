@@ -1,0 +1,5 @@
+- name: scp corefile_clear.sh script
+  action: copy src=../scripts/crontab/corefile_clear.sh dest=${client_crontab_path}/corefile_clear.sh owner=root group=root mode=0755
+
+- name: cron corefile_clear.sh
+  cron: name="corefile_clear.sh" minute="5" hour="0" job="/bin/sh ${client_crontab_path}/corefile_clear.sh" user=root state=present

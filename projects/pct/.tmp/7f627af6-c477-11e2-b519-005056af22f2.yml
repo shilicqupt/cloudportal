@@ -1,0 +1,4 @@
+- hosts  : hadoop 
+  user   : borqs 
+  tasks  : 
+     - include : /application/cloudportal/projects/pct/playbooks/disable_hugepage.yml

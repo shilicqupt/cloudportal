@@ -1,0 +1,4 @@
+- hosts  : hadoop 
+  user   : root 
+  tasks  : 
+     - include : /application/cloudportal/projects/urldb/playbooks/sync-hbase-0.94.3.yml

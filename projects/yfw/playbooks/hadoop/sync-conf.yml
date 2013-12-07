@@ -1,0 +1,27 @@
+- name: sync hadoop common conf
+  action: template src=../templates/hadoop/conf/$item dest=${hadoop_user_home_path}/${hadoop_ver}/conf/$item owner=${hadoop_user} group=${hadoop_user_group} mode=0644
+  with_items:
+    - log4j.properties
+    - hadoop-env.sh
+    - hadoop-metrics.properties
+    - core-site.xml
+    - mapred-site.xml
+    - hdfs-site.xml
+    - masters
+
+- name: sync hadoop namenode conf
+  action: template src=../templates/hadoop/conf/$item dest=${hadoop_user_home_path}/${hadoop_ver}/conf/$item owner=${hadoop_user} group=${hadoop_user_group} mode=0644
+  only_if: '$is_namenode'
+  with_items:
+   - slaves
+
+- name: sync hadoop second namenode conf
+  action: template src=../templates/hadoop/conf/masters_sn dest=${hadoop_user_home_path}/${hadoop_ver}/conf/masters owner=${hadoop_user} group=${hadoop_user_group} mode=0644
+  only_if: '$is_secondnamenode'
+
+- name: sync hadoop jobtracker conf
+  action: template src=../templates/hadoop/conf/$item dest=${hadoop_user_home_path}/${hadoop_ver}/conf/$item owner=${hadoop_user} group=${hadoop_user_group} mode=0644
+  only_if: '$is_jobtracker'
+  with_items:
+    - fair-scheduler.xml
+    - mapred-queue-acls.xml

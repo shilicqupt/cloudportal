@@ -1,0 +1,6 @@
+- hosts  : hadoop 
+  sudo   : yes
+  user   : borqs 
+  tasks  : 
+     - include : /application/cloudportal/projects/pct/playbooks/
+     - include : /application/cloudportal/projects/pct/playbooks/mkdir1-directory.yml

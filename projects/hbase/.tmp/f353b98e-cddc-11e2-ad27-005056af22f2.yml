@@ -1,0 +1,12 @@
+- hosts  : pct 
+  sudo   : yes
+  user   : borqs 
+  tasks  : 
+     - include : /application/cloudportal/projects/hbase/playbooks/common/clear-directory.yml
+     - include : /application/cloudportal/projects/hbase/playbooks/common/ensure-directory.yml
+     - include : /application/cloudportal/projects/hbase/playbooks/common/sync-profile.yml
+     - include : /application/cloudportal/projects/hbase/playbooks/common/zookeeper-clear.yml
+     - include : /application/cloudportal/projects/hbase/playbooks/hbase/hbase-install.yml
+     - include : /application/cloudportal/projects/hbase/playbooks/hbase/hbase-configure.yml
+     - include : /application/cloudportal/projects/hbase/playbooks/hbase/zookeeper-install.yml
+     - include : /application/cloudportal/projects/hbase/playbooks/hbase/zookeeper-configure.yml

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <property>
+    <name>fs.default.name</name>
+    <value>hdfs://YFW-0249:29000</value>
+  </property>
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>/data0/search/hadoop-tmp</value>
+  </property>
+  <property>
+    <name>fs.trash.interval</name>
+    <value>1440</value>
+  </property>
+  <property>
+    <name>io.compression.codecs</name>
+    <value>org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.BZip2Codec,org.apache.hadoop.io.compress.DeflateCodec,org.apache.hadoop.io.compress.SnappyCodec,com.hadoop.compression.lzo.LzoCodec,com.hadoop.compression.lzo.LzopCodec</value>
+  </property>
+  <property>
+    <name>io.compression.codec.lzo.class</name>
+    <value>com.hadoop.compression.lzo.LzoCodec</value>
+  </property>
+  <property>
+   <name>topology.script.file.name</name>
+   <value>/application/search/hadoop-0.20.2-cdh3u4/bin/get_racks.sh</value>
+    <description> The script name that should be invoked to resolve DNS names to
+      NetworkTopology names. Example: the script would take host.foo.bar as an
+      argument, and return /rack1 as the output.
+    </description>
+  </property>
+</configuration>

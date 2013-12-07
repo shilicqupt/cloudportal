@@ -1,0 +1,6 @@
+- hosts  : zookeeper 
+  sudo   : yes
+  user   : root 
+  tasks  : 
+      - name: execute script 
+        action: script /application/cloudportal/projects/zookeeper/.tmp/c83e3d8e-cdbc-11e2-861d-005056af22f2.sh  

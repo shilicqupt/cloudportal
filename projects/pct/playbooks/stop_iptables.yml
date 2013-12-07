@@ -1,0 +1,4 @@
+- name: no iptables
+  action: service name=iptables state=stopped
+  
+

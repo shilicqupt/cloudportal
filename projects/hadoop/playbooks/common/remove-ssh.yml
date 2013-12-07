@@ -1,0 +1,7 @@
+- name: delete id_dsa
+  action: shell rm -rf  ${hadoop_user_home_path}/.ssh/id_dsa 
+  ignore_errors: yes
+- name: delete id_dsa.pub
+  action: shell rm -rf  ${hadoop_user_home_path}/.ssh/id_dsa.pub 
+- name: enable key-based ssh access for users
+  authorized_key: user=${hadoop_user}  key='$FILE(../repositories/keys/id_dsa.pub)'   state=absent

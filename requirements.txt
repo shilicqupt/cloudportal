@@ -1,0 +1,9 @@
+#sudo apt-get install python-mysqldb
+#sudo apt-get install python-dev libldap2-dev libsasl2-dev libssl-dev
+Django==1.5.1
+python-ldap>=2.0
+django-auth-ldap
+django-celery
+python-magic
+South==0.7.6
+

@@ -1,0 +1,2 @@
+- name: run hadoop-install_check script
+  action: script ../scripts/hadoop-install_check.sh ${client_temp_path}

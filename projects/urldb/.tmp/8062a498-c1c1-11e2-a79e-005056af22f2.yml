@@ -1,0 +1,5 @@
+- hosts  : hadoop 
+  user   : root 
+  tasks  : 
+      - name: execute script 
+        action: script /application/cloudportal/projects/urldb/.tmp/80626dac-c1c1-11e2-a79e-005056af22f2.sh  

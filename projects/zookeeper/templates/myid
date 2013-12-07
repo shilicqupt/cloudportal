@@ -1,0 +1,7 @@
+{% set i=0 %}
+{% for host in groups['zookeeper'] %}
+{% set i=i+1 %}
+{% if ansible_hostname == host %}
+{{i}}
+{% endif%}
+{% endfor %}

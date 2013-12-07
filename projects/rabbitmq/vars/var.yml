@@ -1,0 +1,18 @@
+#rabbitmq user
+rabbitmq_user : search
+rabbitmq_user_group : search
+rabbitmq_user_home_path  :  /application/search
+
+
+#client host
+client_download_path : /application/search/download
+client_temp_path : /application/search/tmp
+
+#software version
+rabbitmq_ver : rabbitmq-server-generic-unix-3.1.1
+rabbitmq_target_folder : rabbitmq_server-3.1.1
+erlang_ver : otp_src_R16B
+
+
+#ansible config
+ansible_repertory_path : /application/cloudportal-repositories

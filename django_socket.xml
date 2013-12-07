@@ -1,0 +1,15 @@
+<uwsgi>
+    <socket>:8077</socket>
+    <module>django_wsgi</module>
+    <processes>4</processes> 
+    <daemonize>uwsgi.log</daemonize>
+    <listen>20</listen>  
+    <master>true</master>  
+    <pidfile>/usr/local/nginx/uwsgi.pid</pidfile>  
+    <pythonpath>/home/shili/cloudportal</pythonpath>
+    <profiler>true</profiler>  
+    <memory-report>true</memory-report>  
+    <enable-threads>true</enable-threads>  
+    <logdate>true</logdate>  
+    <limit-as>6048</limit-as>  
+</uwsgi>

@@ -1,0 +1,6 @@
+- hosts  : host 
+  sudo   : yes
+  user   : root 
+  tasks  : 
+      - name: execute script 
+        action: script /application/cloudportal/projects/gongcheng/.tmp/89dd36b6-f829-11e2-b018-005056af22f2.sh x 

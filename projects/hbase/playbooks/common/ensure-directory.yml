@@ -1,0 +1,12 @@
+- name: ensure /tmp exists
+  file: path=/tmp mode=0777 owner=root group=root  state=directory
+
+- name: ensure /application/search/tmp directory exists
+  action: file dest=${client_temp_path} owner=search group=search mode=0755 state=directory
+
+- name: ensure /application/search/download directory exists
+  action: file dest=${client_download_path} owner=search group=search mode=0755 state=directory
+
+
+
+

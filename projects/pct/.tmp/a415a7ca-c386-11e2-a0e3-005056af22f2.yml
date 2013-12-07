@@ -1,0 +1,5 @@
+- hosts  : YFW-0524 
+  user   : p_xieyuandong 
+  tasks  : 
+      - name: execute script 
+        action: script /application/cloudportal/projects/pct/.tmp/a415735e-c386-11e2-a0e3-005056af22f2.sh  

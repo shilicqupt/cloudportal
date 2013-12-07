@@ -1,0 +1,5 @@
+- hosts  : hadoop 
+  user   : borqs 
+  tasks  : 
+      - name: execute script 
+        action: copy src=/application/cloudportal/desktop/core/tmp dest=/home/borqs/ owner=search group=search mode=644

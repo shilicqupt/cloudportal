@@ -1,0 +1,2 @@
+- name: copy profile
+  action: copy src=../templates/bashrc/bashrc dest=/application/search/.bashrc

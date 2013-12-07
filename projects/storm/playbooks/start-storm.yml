@@ -1,0 +1,7 @@
+- name: start storm nimbus
+  action: script ../scripts/start_nimbus.sh
+  only_if: '$is_nimbus'
+
+- name: start storm supervisor
+  action: script ../scripts/start_supervisor.sh
+  only_if: '$is_supervisor'

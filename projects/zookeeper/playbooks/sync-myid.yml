@@ -1,0 +1,4 @@
+- name: sync zookeeper conf
+  action: template src=../templates/$item dest=${zookeeper_dataDir}/$item owner=${zookeeper_user} group=${zookeeper_user_group} mode=0664
+  with_items:
+     - myid

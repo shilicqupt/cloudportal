@@ -1,0 +1,12 @@
+- name: remove download
+  action: file dest=${client_download_path} state=absent
+
+- name: remove tmp
+  action: file dest=${client_temp_path} state=absent
+
+
+
+
+
+
+

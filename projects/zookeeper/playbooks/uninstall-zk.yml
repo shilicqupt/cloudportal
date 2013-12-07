@@ -1,0 +1,11 @@
+- name: rm zookeeper
+  action: shell rm -rf /application/search/zookeeper-3.4.5/
+
+- name: rm zookeeper data
+  action: shell rm -rf /data0/search/zookeeper/
+
+- name: rm zookeeper.out
+  action: shell rm -rf /application/search/zookeeper.out
+
+- name: rm hsperfdata
+  action: shell rm -rf /tmp/hsperfdata_*

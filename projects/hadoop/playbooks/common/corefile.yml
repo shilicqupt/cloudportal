@@ -1,0 +1,18 @@
+- name: ensure /tmp/corefile exists
+  file: path=/tmp/corefile mode=0755 owner=root group=root  state=directory
+
+- name: kernel.core_pattern = /tmp/corefile/core.%e.%t
+  sysctl: name=kernel.core_pattern value=/tmp/corefile/core.%e.%t state=present reload=yes checks=both
+
+#- name: ensure crontab directory exists
+#  action: file dest=${client_crontab_path} owner=root group=root mode=0755 state=directory
+
+#- name: scp chmodcore.sh script
+#  action: copy src=../scripts/crontab/chmodcore.sh dest=${client_crontab_path}/chmodcore.sh owner=root group=root mode=0755
+#- name: cron chmodcore.sh
+#  cron: name="chmodcore" minute="*/1" job="/bin/sh ${client_crontab_path}/chmodcore.sh" user=root state=present
+
+#- name: scp corefile_clear.sh script
+#  action: copy src=../scripts/crontab/corefile_clear.sh dest=${client_crontab_path}/corefile_clear.sh owner=root group=root mode=0755
+#- name: cron corefile_clear.sh
+#  cron: name="corefile_clear" minute="5" hour="0" job="/bin/sh ${client_crontab_path}/corefile_clear.sh" user=root state=present

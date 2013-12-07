@@ -1,0 +1,84 @@
+
+{% extends "base.html" %}
+{% load pagination_tags %}
+
+{% block content %}
+    <div class="container">
+        <div class="page-header">
+            <h3>
+                <i class="icon-desktop icon-2x pull-left icon-muted"></i>
+                {{ project.name }}
+                <a class="pull-right" href="{% url 'explore' project.name %}"><i class="icon-th-large"></i> Explore</a>
+            </h3>
+            <p class="muted" style="padding-left: 70px">{{ project.description }}</p>
+
+        </div>
+        <div class="row">
+            <div class="span3">
+                <div class="well sidebar-nav">
+                    <header>
+                        <h5>Ansible Resources <a class="pull-right" href="{% url 'explore' project.name %}"><i class="icon-th-large"></i></a></h5>
+                    </header>
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Inventories</li>
+                        {% for item in project.available_inventories %}
+                            <li><a href="{% url 'view_file' project_name=project.name path=item type='inventory' %}">{{ item }}</a></li>
+                        {% endfor %}
+                        <li class="nav-header">Playbooks</li>
+                        {% for item in project.available_playbooks %}
+                            <li><a href="{% url 'view_file' project_name=project.name path=item type='playbook'%}" role="leaf" id="nut">{{ item }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="span9">
+                <div class="well well-small">
+                    <header>
+                        <h5>Execute Command</h5>
+                    </header>
+                    <div class="controls-row">
+                        <a href="{% url 'execute_playbook' project.name %}" class="btn btn-primary">Execute Job</a>
+                        <a href="{% url 'execute_script' project.name %}" class="btn">Execute Script</a>
+                        <a href="{% url 'execute_scp' project.name %}" class="btn">Execute Scp</a>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <ul class="nav nav-tabs">
+                        <li >
+                            <a href="{% url 'view_project' project.name %}">Job Template</a>
+                        </li>
+                        <li class="active">
+                            <a href="{% url 'view_project_logs' project.name %}">Job Log</a>
+                        </li>
+
+                    </ul>
+                    <table class="table table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Job ID</th>
+                            <th>Job Status</th>
+                            <th>Created User</th>
+                            <th>Created Date</th>
+                            <th>Operation</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% autopaginate jobs 20 %}
+                        {% for item in jobs %}
+                            <tr id="tr{{ item.pk }}" class="tableRow">
+                                <td><a href="{% url 'job_execute_result' project.name item.pk %}">{{ item.name }}</a></td>
+                                <td>{{ item.status }}</td>
+                                <td>{{ item.created_by }}</td>
+                                <td>{{ item.creation_date}}</td>
+                                <td><a href="{% url 'job_execute_result' project.name item.pk %}"><i class="icon-eye-open"></i></a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% paginate %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

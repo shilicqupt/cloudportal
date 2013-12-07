@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <property>
+    <name>mapred.job.tracker.http.address</name>
+    <value>0.0.0.0:29006</value>
+  </property>
+  <property>
+    <name>mapred.task.tracker.http.address</name>
+    <value>0.0.0.0:29007</value>
+  </property>
+  <property>
+    <name>mapred.job.tracker</name>
+    <value>YFW-0337:29001</value>
+  </property>
+  <property>
+    <name>yfw.mapred.tmp.dir</name>
+    <value>/data0/search/hadoop-tmp/yfw-0337</value>
+  </property>
+  <property>
+    <name>mapred.system.dir</name>
+    <value>${yfw.mapred.tmp.dir}/mapred/system</value>
+    <description>The directory where MapReduce stores control files.
+    </description>
+  </property>
+  <property>
+    <name>mapreduce.jobtracker.staging.root.dir</name>
+    <value>${yfw.mapred.tmp.dir}/mapred/staging</value>
+    <description>The root of the staging area for users' job files
+    In practice, this should be the directory where users' home
+    directories are located (usually /user)
+    </description>
+  </property>
+  <property>
+    <name>mapred.temp.dir</name>
+    <value>${yfw.mapred.tmp.dir}/mapred/temp</value>
+    <description>A shared directory for temporary files.
+    </description>
+  </property>
+  <property>
+    <name>mapred.local.dir</name>
+    <value>/data1/search/hdfs-filesystem/mapreduce/local,/data2/search/hdfs-filesystem/mapreduce/local,/data3/search/hdfs-filesystem/mapreduce/local,/data4/search/hdfs-filesystem/mapreduce/local,/data5/search/hdfs-filesystem/mapreduce/local,/data6/search/hdfs-filesystem/mapreduce/local,/data7/search/hdfs-filesystem/mapreduce/local,/data8/search/hdfs-filesystem/mapreduce/local,/data9/search/hdfs-filesystem/mapreduce/local,/data10/search/hdfs-filesystem/mapreduce/local,/data11/search/hdfs-filesystem/mapreduce/local</value>
+  </property>
+  <property>
+    <name>mapred.map.tasks</name>
+    <value>900</value>
+  </property>
+  <property>
+    <name>mapred.reduce.tasks</name>
+    <value>300</value>
+  </property>
+  <property>
+    <name>mapred.tasktracker.map.tasks.maximum</name>
+    <value>6</value>
+  </property>
+  <property>
+    <name>mapred.tasktracker.reduce.tasks.maximum</name>
+    <value>4</value>
+  </property>
+
+  <!-- map output compress -->
+  <property>
+    <name>mapred.compress.map.output</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>mapred.map.output.compression.codec</name>
+    <value>com.hadoop.compression.lzo.LzoCodec</value>
+  </property>
+  <!-- end -->
+
+  <property>
+    <name>mapred.child.java.opts</name>
+    <value>-Xmx1024m -Djava.net.preferIPv4Stack=true -XX:+UseParallelGC</value>
+  </property>
+  <property>
+    <name>io.sort.factor</name>
+    <value>100</value>
+    <description>The number of streams to merge at once while sorting
+    files. This determines the number of open file handles.</description>
+  </property>
+  <property>
+    <name>io.sort.mb</name>
+    <value>400</value>
+    <description>The total amount of buffer memory to use while sorting
+    files, in megabytes. By default, gives each merge stream 1MB, which
+    should minimize seeks.</description>
+  </property>
+
+  <property>
+    <name>mapred.job.tracker.handler.count</name>
+    <value>120</value>
+    <description>
+      The number of server threads for the JobTracker. This should be roughly
+      4% of the number of tasktracker nodes.
+    </description>
+  </property>
+  
+  <!--shuffle copies configs -->
+  <property>
+    <name>tasktracker.http.threads</name>
+    <value>100</value>
+    <description>The number of worker threads that for the http server. This is
+                 used for map output fetching. We increased this because
+                 each map node is serving larger number of map slots.
+    </description>
+  </property>
+  <property>
+    <name>mapred.reduce.parallel.copies</name>
+    <value>25</value>
+    <description>The default number of parallel transfers run by reduce
+    during the copy(shuffle) phase.
+    </description>
+  </property>
+  <!-- end -->
+  
+  <property>
+    <name>mapred.task.timeout</name>
+    <value>300000</value>
+    <description>The number of milliseconds before a task will be
+    terminated if it neither reads an input, writes an output, nor
+    updates its status string.
+    </description>
+  </property>
+  <property>
+    <name>mapred.map.max.attempts</name>
+    <value>4</value>
+    <description>Expert: The maximum number of attempts per map task.
+    In other words, framework will try to execute a map task these many number
+    of times before giving up on it.
+    </description>
+  </property>
+  <property>
+    <name>mapred.reduce.max.attempts</name>
+    <value>4</value>
+    <description>Expert: The maximum number of attempts per reduce task.
+    In other words, framework will try to execute a reduce task these many number
+    of times before giving up on it.
+    </description>
+  </property>
+
+  <property>
+    <name>mapred.map.tasks.speculative.execution</name>
+    <value>false</value>
+    <description>If true, then multiple instances of some map tasks
+      may be executed in parallel.</description>
+  </property>
+  <property>
+    <name>mapred.reduce.tasks.speculative.execution</name>
+    <value>false</value>
+    <description>If true, then multiple instances of some reduce tasks
+      may be executed in parallel.</description>
+  </property>
+  <property>
+     <name>mapred.healthChecker.script.path</name>
+     <value>/application/search/hadoop-0.20.2-cdh3u4/bin/healthcheck.sh</value>
+      <description>Absolute path to the script which is periodicallyrun by the node health monitoring service to determine if the node is healthy or not. If the value of this key is empty or the file does not exist in the location configured here, the node health monitoring service is not started.</description>
+   </property>
+  
+  <property>
+    <name>mapred.jobtracker.completeuserjobs.maximum</name>
+    <value>10</value>
+    <description>The maximum number of complete jobs per user to keep around 
+      before delegating them to the job history.</description>
+  </property>
+  <property>
+    <name>mapred.job.tracker.retiredjobs.cache.size</name>
+    <value>50</value>
+    <description>The number of retired job status to keep in the cache. </description> 
+  </property>
+
+  <!-- userlog limits -->
+  <property>  
+     <name>mapred.userlog.limit.kb</name>  
+     <value>10240</value>  
+     <description>The maximum size of user-logs of each task in KB. 0 disables the cap.  </description>
+  </property>
+  <property>  
+    <name>mapred.userlog.retain.hours</name>  
+    <value>12</value>  
+    <description>The maximum time, in hours, for which the user-logs are to be              
+      retained after the job completion.  </description>
+  </property>
+  <!-- end of userlog limits -->
+
+  <!-- scheduler configurations -->
+  <property>
+    <name>mapred.jobtracker.taskScheduler</name>
+    <value>org.apache.hadoop.mapred.FairScheduler</value>
+    <final>true</final>
+  </property>
+  <property>
+    <name>mapred.fairscheduler.preemption</name>
+    <value>true</value>
+    <final>true</final>
+  </property>
+  <property>
+    <name>mapred.fairscheduler.assignmultiple</name>
+    <value>true</value>
+    <final>true</final>
+  </property>
+  <property>
+    <name>mapred.fairscheduler.allocation.file</name>
+    <value>/application/search/hadoop-0.20.2-cdh3u4/conf/fair-scheduler.xml</value>
+    <final>true</final>
+  </property>
+  <property>
+    <name>mapred.fairscheduler.poolnameproperty</name>
+    <value>mapred.queue.name</value>
+    <description>job.set("mapred.queue.name",pool); // pool is set to either 'high' or 'low' </description>
+    <final>true</final>
+  </property>
+  <property>
+    <name>mapred.fairscheduler.preemption.only.log</name>
+    <value>false</value>
+    <final>true</final>
+  </property>
+  <property>
+    <name>mapred.fairscheduler.preemption.interval</name>
+    <value>60000</value>
+    <final>true</final>
+  </property>
+  <!-- control CPU and memory -->
+  <property>
+    <name>mapreduce.tasktracker.resourcecalculatorplugin</name>
+    <value>org.apache.hadoop.util.LinuxResourceCalculatorPlugin</value>
+    <final>true</final>
+  </property>
+  <property>
+    <name>mapreduce.tasktracker.reserved.physicalmemory.mb</name>
+    <value>1024</value>
+    <final>true</final>
+  </property>
+  <property>
+    <name>mapred.fairscheduler.load.max.cpuper</name>
+    <value>96.0f</value>
+    <final>true</final>
+  </property>
+  <property>
+    <name>mapreduce.map.memory.physical.mb</name>
+    <value>8096</value>
+    <final>true</final>
+  </property>
+  <property>
+    <name>mapreduce.reduce.memory.physical.mb</name>
+    <value>8096</value>
+    <final>true</final>
+  </property>
+  <property>
+    <name>mapred.fairscheduler.loadmanager</name>
+    <value>org.apache.hadoop.mapred.PanguCapBasedLoadManager</value>
+    <final>true</final>
+  </property>
+  <!-- end of control CPU and memory -->
+  <property>
+    <name>mapred.queue.names</name>
+    <value>relat,index,crawl,search,fast,default</value>
+    <final>true</final>
+  </property>
+  <property>
+    <name>mapred.acls.enabled</name>
+    <value>true</value>
+    <final>true</final>
+  </property>
+  <!-- end of scheduler configs -->
+  <!--property>
+    <name>mapred.queue.name</name>
+    <value>fast</value>
+  </property-->
+</configuration>

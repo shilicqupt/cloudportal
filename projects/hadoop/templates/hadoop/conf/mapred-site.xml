@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+        <name>mapred.job.tracker</name>
+        <value>{{jobtracker}}:{{mapred_job_tracker_port}}</value>
+    </property>
+    <property>
+        <name>mapred.job.tracker.http.address</name>
+        <value>0.0.0.0:{{mapred_job_tracker_http_port}}</value>
+    </property>
+    <property>
+        <name>mapred.task.tracker.http.address</name>
+        <value>0.0.0.0:{{mapred_task_tracker_http_port}}</value>
+    </property>
+</configuration>
+

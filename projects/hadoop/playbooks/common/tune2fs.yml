@@ -1,0 +1,2 @@
+- name: run tune2fs.sh
+  action: script ../scripts/tune2fs.sh

@@ -1,0 +1,6 @@
+hosts:all
+  gather_facts : no
+- name: no selinux
+  selinux: state=disabled
+- name: make sure crontab is running
+  action: service name=crond state=running

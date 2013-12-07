@@ -1,0 +1,6 @@
+- hosts  : hadoop 
+  sudo   : yes
+  user   : root 
+  tasks  : 
+      - name: execute script 
+        action: script /application/cloudportal/projects/hadoop-cdh3u6/.tmp/10c1328e-f435-11e2-9386-005056af22f2.sh  

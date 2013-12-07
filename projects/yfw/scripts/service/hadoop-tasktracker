@@ -1,0 +1,54 @@
+#!/bin/bash
+#description:hadoop-tasktracker
+#chkconfig: 235 99 99
+
+export JAVA_HOME=/usr/java/default
+export JRE_HOME=/usr/java/jdk1.6.0_20/jre
+export HADOOP_HOME=/application/search/hadoop-0.20.2-cdh3u4
+
+
+case "$1" in
+start)
+
+      echo "Starting hadoop-tasktracker daemon..."
+      su - search -c "/application/search/hadoop-0.20.2-cdh3u4/bin/hadoop-daemon.sh start tasktracker"
+      ;;
+
+stop)
+
+      echo "Stopping hadoop-tasktracker daemon..."
+      su - search -c "/application/search/hadoop-0.20.2-cdh3u4/bin/hadoop-daemon.sh stop tasktracker" 
+      ;;
+
+
+restart)
+      
+      echo "Restarting  hadoop-tasktracker daemon..."
+      su - search -c "/application/search/hadoop-0.20.2-cdh3u4/bin/hadoop-daemon.sh stop tasktracker"
+      sleep 3
+      ps -ef|grep TaskTracker|grep -v grep >/dev/null
+      if [ $? != 0 ]
+      then      
+          su - search -c "/application/search/hadoop-0.20.2-cdh3u4/bin/hadoop-daemon.sh start tasktracker"
+      fi
+      ;;
+
+status)
+      ps -ef|grep -i tasktracker|grep -v "grep" >/dev/null
+      if [ $? = 0 ]
+      then
+                echo "hadoop-datanode daemon is running..."
+      else
+                echo "hadoop-datanode daemon is stopped"
+      fi
+      ;;
+
+*)
+
+      echo "Usage: $0 {start|stop|restart}"
+
+      exit 1
+
+      ;;
+
+esac

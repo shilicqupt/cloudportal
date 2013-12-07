@@ -1,0 +1,2 @@
+- name: run libhdfs install script
+  action: script ../scripts/libhdfs_so.sh ${client_temp_path}

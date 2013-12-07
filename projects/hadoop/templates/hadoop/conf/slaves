@@ -1,0 +1,6 @@
+{% for host in groups['hadoop']%}
+{% if host != namenode and host != secondnamenode and host !=jobtracker %}
+{{ host }}
+{% endif %}
+{% endfor %}
+
